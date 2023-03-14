@@ -29,3 +29,5 @@ jobs:
       run: ls -al
     - name: show python version
       run: python --version
+    - name: install dependencies
+      run: pip install -r requirments.txt
