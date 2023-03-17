@@ -41,6 +41,6 @@ jobs:
         envkey_TEST_HOST : ${{ secrets.TEST_HOST }}
         envkey_TEST_PORT : ${{ secrets.TEST_PORT }}     
         file_name: .env
-         fail_on_empty: false
+        fail_on_empty: false
     - name: show .env file
       run: cat .env
