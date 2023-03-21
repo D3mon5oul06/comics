@@ -64,3 +64,5 @@ class CreateNumero(graphene.Mutation):
 #4
 class Mutation(graphene.ObjectType):
     create_Numero = CreateNumero.Field()
+
+schema = graphene.Schema(query=Query, mutation=Mutation)
