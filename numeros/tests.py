@@ -8,10 +8,25 @@ import json
 from numeros.schema import schema
 from numeros.models import Numero
 
-LINKS_QUERY = '''
+NUMEROS_QUERY = '''
 {
     numeros {
     id
+    titulo
+    paginas
+    autor
+    clasificacion
+    pais
+    genero
+    capitulos
+    serializacion
+    precio
+    }
+}
+'''
+CREATE_NUMERO_MUTATION = '''
+mutation createNumeroMutation($titulo: String, $paginas: String, $paginas: Int, $autor: String, $clasificacion: Int, $pais: String, $genero: String, $capitulos: Int, $serializacion: Int, $precio: Int ){
+    createNumero(titulo: $titulo, paginas: $paginas, autor: $autor,  clasificacion: $clasificacion,  pais: $pais,  genero: $genero,  capitulos: $capitulos,  serializacion: $serializacion,  precio: $precio){
     titulo
     paginas
     autor
@@ -32,7 +47,7 @@ class NumeroTestCase(GraphQLTestCase):
         
     def test_numeros_query(self):
         response = self.query(
-            LINKS_QUERY
+            NUMEROS_QUERY
             )
         
         content = json.loads(response.content)
@@ -41,3 +56,16 @@ class NumeroTestCase(GraphQLTestCase):
         print ("query numeros results")
         print (content)
         assert len(content['data']['numeros']) == 2
+
+    def CREATE_NUMERO_MUTATION(self):
+
+        response = self.query(
+            CREATE_NUMERO_MUTATION,
+            variables={'titulo': 'knight', 'paginas': 12, 'autor': 'john', 'clasificacion': 18, 'pais': 'Estados Unidos', 'genero': 'accion', 'capitulos': 12, 'serializacion': 124543245, 'precio': 12}
+        )
+        print('mutation ')
+        print(response)
+        content = json.loads(response.content)
+        print(content)
+        self.assertResponseNoErrors(response)
+        self.assertDictEqual({"createNumero": {'titulo': 'knight', 'paginas': 12, 'autor': 'john', 'clasificacion': 18, 'pais': 'Estados Unidos', 'genero': 'accion', 'capitulos': 12, 'serializacion': 124543245, 'precio': 12}}, content['data'])
