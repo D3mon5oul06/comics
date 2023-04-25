@@ -1,0 +1,12 @@
+build:
+  d3mon5oul06:  # cambiar por su namespcode
+    image: okteto.dev/d3mon5oul06:latest  # cambiar por su namespace de okteto
+
+deploy:
+  - okteto build # build the image with the latest e resources in kubernetes
+  - kubectl apply -f manifests # create all thace de okteto
+dev:
+  d3mon5oul06:
+    command: bash
+    sync:
+    - .:/comics  # cambiar por su proyecto
