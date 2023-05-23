@@ -9,9 +9,13 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-from pathlib import path
-import graphene
-import graphql_jwt
+
+from pathlib import Path
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(_file_).resolve().parent.parent
+
+
 AUTHENTICATION_BACKENDS = [
     'graphql_jwt.backends.JSONWebTokenBackend',
     'django.contrib.auth.backends.ModelBackend',
@@ -20,7 +24,6 @@ AUTHENTICATION_BACKENDS = [
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -106,7 +109,6 @@ DATABASES = {
     }
 
 
-
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -147,5 +149,14 @@ STATIC_URL = '/static/'
 
 GRAPHENE = {
     'SCHEMA': 'comics.schema.schema',
+'MIDDLEWARE': [
+        'graphql_jwt.middleware.JSONWebTokenMiddleware',
+    ],
 }
 
+AUTHENTICATION_BACKENDS = [
+    'graphql_jwt.backends.JSONWebTokenBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
