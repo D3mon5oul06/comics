@@ -9,6 +9,13 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
+from pathlib import path
+import graphene
+import graphql_jwt
+AUTHENTICATION_BACKENDS = [
+    'graphql_jwt.backends.JSONWebTokenBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 from pathlib import Path
 
@@ -141,3 +148,4 @@ STATIC_URL = '/static/'
 GRAPHENE = {
     'SCHEMA': 'comics.schema.schema',
 }
+
