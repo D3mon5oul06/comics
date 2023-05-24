@@ -31,16 +31,16 @@ class CreateNumero(graphene.Mutation):
 
     #2
     class Arguments:
-       id = graphene.Int()
-       titulo = graphene.String()
-       paginas = graphene.Int()
-       autor = graphene.String()
-       clasificacion = graphene.Int()
-       pais = graphene.String()
-       genero = graphene.String()
-       capitulos = graphene.Int()
-       serializacion = graphene.Int()
-       precio = graphene.Int()
+        id = graphene.Int()
+        titulo = graphene.String()
+        paginas = graphene.Int()
+        autor = graphene.String()
+        clasificacion = graphene.Int()
+        pais = graphene.String()
+        genero = graphene.String()
+        capitulos = graphene.Int()
+        serializacion = graphene.Int()
+        precio = graphene.Int()
 
     #3
     def mutate(self, info, titulo, paginas, autor, clasificacion, pais, genero, capitulos, serializacion, precio ):
