@@ -6,15 +6,15 @@ metadata:
     app: postgres
 data:
   DEV_SECRET_KEY : centenito 
-  DEV_DATABASE : gjkfvlex 
-  DEV_USER : gjkfvlex 
-  DEV_PASSWORD : R1VTicGk1qpd7k2eeS07PAqg3vC9h_PP 
+  DEV_DATABASE : frhlebto 
+  DEV_USER : frhlebto 
+  DEV_PASSWORD : gBswDoxM8SNT8fNobBfFSeTu53-dUlst 
   DEV_HOST : mahmud.db.elephantsql.com
   DEV_PORT : "5432"  
 
   PROD_SECRET_KEY : centenito 
-  PROD_DATABASE : gjkfvlex 
-  PROD_USER : gjkfvlex 
-  PROD_PASSWORD : R1VTicGk1qpd7k2eeS07PAqg3vC9h_PP 
+  PROD_DATABASE : frhlebto 
+  PROD_USER : frhlebto 
+  PROD_PASSWORD : gBswDoxM8SNT8fNobBfFSeTu53-dUlst 
   PROD_HOST : mahmud.db.elephantsql.com
   PROD_PORT : "5432"  
