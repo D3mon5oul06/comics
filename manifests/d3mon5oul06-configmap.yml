@@ -11,3 +11,11 @@ data:
   PROD_PASSWORD : 7GFuH17toYkdmGFEiXMAVS1Kmw68I5CB 
   PROD_HOST : mahmud.db.elephantsql.com
   PROD_PORT : "5432"
+  
+  DEV_SECRET_KEY : 7GFuH17toYkdmGFEiXMAVS1Kmw68I5CB 
+  DEV_DATABASE : zognjkxu 
+  DEV_USER : zognjkxu 
+  DEV_PASSWORD : 7GFuH17toYkdmGFEiXMAVS1Kmw68I5CB 
+  DEV_HOST : mahmud.db.elephantsql.com
+  DEV_PORT : "5432"  
+
