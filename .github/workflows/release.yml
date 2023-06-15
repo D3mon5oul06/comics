@@ -6,9 +6,9 @@ on:
   # Triggers the workflow on push or pull request events but only for the master branch
 
   push:
-    branches: [ "master"]
+    branches: [ "release"]
   pull_request:
-    branches: [ "master"]
+    branches: [ "release"]
 jobs:
   master_ci_cd:
     runs-on: ubuntu-latest
