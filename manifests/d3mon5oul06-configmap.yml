@@ -5,17 +5,16 @@ metadata:
   labels:
     app: postgres
 data:
-  PROD_SECRET_KEY : 7GFuH17toYkdmGFEiXMAVS1Kmw68I5CB 
-  PROD_DATABASE : zognjkxu 
-  PROD_USER : zognjkxu
-  PROD_PASSWORD : 7GFuH17toYkdmGFEiXMAVS1Kmw68I5CB 
-  PROD_HOST : mahmud.db.elephantsql.com
-  PROD_PORT : "5432"
-  
-  DEV_SECRET_KEY : 7GFuH17toYkdmGFEiXMAVS1Kmw68I5CB 
-  DEV_DATABASE : zognjkxu 
-  DEV_USER : zognjkxu 
-  DEV_PASSWORD : 7GFuH17toYkdmGFEiXMAVS1Kmw68I5CB 
-  DEV_HOST : mahmud.db.elephantsql.com
+  DEV_SECRET_KEY : centenito 
+  DEV_DATABASE : gjkfvlex 
+  DEV_USER : gjkfvlex 
+  DEV_PASSWORD : R1VTicGk1qpd7k2eeS07PAqg3vC9h_PP 
+  DEV_HOST : rosie.db.elephantsql.com
   DEV_PORT : "5432"  
 
+  PROD_SECRET_KEY : centenito 
+  PROD_DATABASE : gjkfvlex 
+  PROD_USER : gjkfvlex 
+  PROD_PASSWORD : R1VTicGk1qpd7k2eeS07PAqg3vC9h_PP 
+  PROD_HOST : rosie.db.elephantsql.com
+  PROD_PORT : "5432"  
