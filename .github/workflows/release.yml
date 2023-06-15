@@ -9,11 +9,16 @@ on:
     branches: [ "release"]
   pull_request:
     branches: [ "release"]
+    
 jobs:
-  master_ci_cd:
+  release:
     runs-on: ubuntu-latest
-    steps:
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [3.8]
 
+    steps:
     - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
@@ -22,11 +27,11 @@ jobs:
     - name: show linux version
       run: lsb_release -a
     - name: list directory
-      run: ls -al
-    - name: show python version
+      run: ls -la
+    - name: python version
       run: python --version
     - name: install dependencies
-      run: pip install -r requirments.txt
+      run: pip install -r requirements.txt
     - name: make .env 
       uses: SpicyPizza/create-envfile@v1.3
       with:
@@ -40,6 +45,22 @@ jobs:
         fail_on_empty: false
     - name: show .env file
       run: cat .env
+      
+    - name: update DEV_SECRET_KEY
+      run: sed -i 's/MY_DEV_SECRET_KEY/${{secrets.DEV_SECRET_KEY}}/g' manifests/d3mon5oul06-configmap.yml     
+    - name: update MY_DEV_DATABASE
+      run: sed -i 's/MY_DEV_DATABASE/${{secrets.DEV_DATABASE}}/g' manifests/d3mon5oul06-configmap.yml      
+    - name: update MY_DEV_USER
+      run: sed -i 's/MY_DEV_USER/${{secrets.DEV_USER}}/g' manifests/d3mon5oul06-configmap.yml      
+    - name: update MY_DEV_PASSWORD
+      run: sed -i 's/MY_DEV_PASSWORD/${{secrets.DEV_PASSWORD}}/g' manifests/d3mon5oul06-configmap.yml      
+    - name: update MY_DEV_HOST 
+      run: sed -i 's/MY_DEV_HOST/${{secrets.DEV_HOST}}/g' manifests/d3mon5oul06-configmap.yml     
+    - name: update MY_DEV_PORT 
+      run: sed -i 's/MY_DEV_PORT/${{secrets.DEV_PORT}}/g' manifests/d3mon5oul06-configmap.yml
+    - name: show config 
+      run: cat manifests/d3mon5oul06-configmap.yml
+      
     - uses: okteto/context@2.7.0
       with:
         token: ${{ secrets.OKTETO_TOKEN }}
