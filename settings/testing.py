@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
+import os
+from decouple import config
 
 from pathlib import Path
 
@@ -16,21 +18,11 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-AUTHENTICATION_BACKENDS = [
-    'graphql_jwt.backends.JSONWebTokenBackend',
-    'django.contrib.auth.backends.ModelBackend',
-]
-
-from pathlib import Path
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '^yrim=j*^gf58(*ok$$od(@^d7c^p3%k%%&f#!uhhc=_r62iu%'
+SECRET_KEY = config("TEST_SECRET_KEY", default='')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,7 +33,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'health_check',  
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,8 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'graphene_django',
     'numeros',
-    'corsheaders',
-    'myapp',
 ]
 
 MIDDLEWARE = [
@@ -62,16 +51,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-]
-
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:4200',
-    'http://127.0.0.1:4200',
 ]
 
 ROOT_URLCONF = 'comics.urls'
@@ -98,16 +77,25 @@ WSGI_APPLICATION = 'comics.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+TEST_DATABASE = config("TEST_DATABASE", default='')
+TEST_USER = config("TEST_USER", default='')
+TEST_PASSWORD = config("TEST_PASSWORD", default='')
+TEST_HOST = config("TEST_HOST", default='')
+TEST_PORT = config("TEST_PORT",default=5432)
+
 DATABASES = {
-       'default': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'comics',
-        'USER': 'postgres',
-        'PASSWORD': 'IrvingConde123',
-        'HOST': 'localhost',
-        'PORT': '5432'
+        'NAME': TEST_DATABASE,
+        'USER': TEST_USER,
+        'PASSWORD': TEST_PASSWORD,
+        'HOST': TEST_HOST,
+        'PORT': TEST_PORT,
+        'TEST': {
+            'NAME': TEST_DATABASE,
+        },
     }
-    }
+}
 
 
 
@@ -151,14 +139,4 @@ STATIC_URL = '/static/'
 
 GRAPHENE = {
     'SCHEMA': 'comics.schema.schema',
-'MIDDLEWARE': [
-        'graphql_jwt.middleware.JSONWebTokenMiddleware',
-    ],
 }
-
-AUTHENTICATION_BACKENDS = [
-    'graphql_jwt.backends.JSONWebTokenBackend',
-    'django.contrib.auth.backends.ModelBackend',
-]
-
-CORS_ORIGIN_ALLOW_ALL = True

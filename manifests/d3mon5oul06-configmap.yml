@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: d3mon5oul06-config
+  labels:
+    app: postgres
+data:
+  PROD_SECRET_KEY : 7GFuH17toYkdmGFEiXMAVS1Kmw68I5CB 
+  PROD_DATABASE : zognjkxu 
+  PROD_USER : zognjkxu
+  PROD_PASSWORD : 7GFuH17toYkdmGFEiXMAVS1Kmw68I5CB 
+  PROD_HOST : mahmud.db.elephantsql.com
+  PROD_PORT : "5432"

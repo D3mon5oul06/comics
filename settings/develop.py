@@ -16,16 +16,6 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-AUTHENTICATION_BACKENDS = [
-    'graphql_jwt.backends.JSONWebTokenBackend',
-    'django.contrib.auth.backends.ModelBackend',
-]
-
-from pathlib import Path
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -41,7 +31,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'health_check',  
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,8 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'graphene_django',
     'numeros',
-    'corsheaders',
-    'myapp',
 ]
 
 MIDDLEWARE = [
@@ -62,16 +49,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-]
-
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:4200',
-    'http://127.0.0.1:4200',
 ]
 
 ROOT_URLCONF = 'comics.urls'
@@ -100,10 +77,11 @@ WSGI_APPLICATION = 'comics.wsgi.application'
 
 DATABASES = {
        'default': {
+
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'comics',
+        'NAME': 'comics_develop',
         'USER': 'postgres',
-        'PASSWORD': 'IrvingConde123',
+        'PASSWORD': 'Lucoa',
         'HOST': 'localhost',
         'PORT': '5432'
     }
@@ -151,14 +129,4 @@ STATIC_URL = '/static/'
 
 GRAPHENE = {
     'SCHEMA': 'comics.schema.schema',
-'MIDDLEWARE': [
-        'graphql_jwt.middleware.JSONWebTokenMiddleware',
-    ],
 }
-
-AUTHENTICATION_BACKENDS = [
-    'graphql_jwt.backends.JSONWebTokenBackend',
-    'django.contrib.auth.backends.ModelBackend',
-]
-
-CORS_ORIGIN_ALLOW_ALL = True
