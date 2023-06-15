@@ -5,6 +5,7 @@ metadata:
   labels:
     app: postgres
 data:
+
   DEV_SECRET_KEY : verificacion 
   DEV_DATABASE : frhlebto 
   DEV_USER : frhlebto 
