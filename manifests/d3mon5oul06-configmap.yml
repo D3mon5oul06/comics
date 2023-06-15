@@ -5,14 +5,14 @@ metadata:
   labels:
     app: postgres
 data:
-  DEV_SECRET_KEY : centenito 
+ DEV_SECRET_KEY : verificacion 
   DEV_DATABASE : frhlebto 
   DEV_USER : frhlebto 
   DEV_PASSWORD : gBswDoxM8SNT8fNobBfFSeTu53-dUlst 
   DEV_HOST : mahmud.db.elephantsql.com
   DEV_PORT : "5432"  
 
-  PROD_SECRET_KEY : centenito 
+  PROD_SECRET_KEY : verificacion 
   PROD_DATABASE : frhlebto 
   PROD_USER : frhlebto 
   PROD_PASSWORD : gBswDoxM8SNT8fNobBfFSeTu53-dUlst 
