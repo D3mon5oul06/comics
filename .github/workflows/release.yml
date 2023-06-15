@@ -1,23 +1,19 @@
+
 name: release CI/CD
 
 # Controls when the action will run.l 
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
+
   push:
-    branches: [ release ]
+    branches: [ "master"]
   pull_request:
-    branches: [ release ]
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+    branches: [ "master"]
 jobs:
-  release:
-
+  master_ci_cd:
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 4
-      matrix:
-        python-version: [3.8]
     steps:
+
     - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
