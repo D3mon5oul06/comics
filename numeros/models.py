@@ -15,3 +15,7 @@ class Numero(models.Model):
     serializacion = models.IntegerField(default=0, blank=False)
     precio = models.FloatField(default=0, blank=False)
     posted_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE)
+
+class Vote(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    numero = models.ForeignKey('numeros.Numero', related_name='numeros', on_delete=models.CASCADE)
