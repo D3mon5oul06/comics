@@ -1,39 +1,39 @@
+#manifest
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: d3mon5oul06
+  name: {d3mon5oul06}-deployment
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: d3mon5oul06
+      app: {d3mon5oul06}-server
+  replicas: 3
   template:
     metadata:
       labels:
-        app: d3mon5oul06
+        app: {d3mon5oul06}-server
     spec:
       containers:
-      - image: okteto.dev/d3mon5oul06:latest
-        name: d3mon5oul06
-        envFrom:
-        - configMapRef:
-            name: d3mon5oul06-config
-        livenessProbe:
-          httpGet:
-            path: /ht/
-            port: 8080
-          initialDelaySeconds: 5
-          periodSeconds: 5
+      - name: {d3mon5oul06}-container
+        #image: gcr.io/tensorflow-serving/resnet 
+        image: docker.io/{d3m0n5oul}/tensorflow-{d3mon5oul06}:{github.sha}
+        ports:
+        - containerPort: 8501
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
-  name: d3mon5oul06
-  annotations:
-    dev.okteto.com/auto-ingress: "true"
+  labels:
+    run: {d3mon5oul06}-service
+  name: {d3mon5oul06}-service
 spec:
-  type: ClusterIP
+  ports:
+  - port: 8501
+    targetPort: 8501
+  selector:
+    app: {d3mon5oul06}-server
+  type: LoadBalancer
+
   ports:
   - name: "d3mon5oul06"
     port: 8080
